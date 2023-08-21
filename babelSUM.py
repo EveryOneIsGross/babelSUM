@@ -13,7 +13,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from elevenlabs import generate, play, set_api_key
 import os
-os.environ['PATH'] += os.pathsep + 'c:/ffmpeg/bin/'
+#os.environ['PATH'] += os.pathsep + 'c:/ffmpeg/bin/'
 
 # Initialize the embedding model at the beginning of the script
 embedder = Embed4All()
@@ -376,7 +376,27 @@ def main(engine):
         elif user_input == "chat":
             chat_with_agent()
             
-
+        if user_input == "pause":
+            print("\nReading paused. Type 'resume' to continue reading or enter a segment number.")
+            while True:
+                pause_input = input("Paused> ").strip().lower()  # Wait for user command
+                if pause_input == "resume":
+                    print("\nResuming reading...")
+                    break
+                elif pause_input.isdigit():
+                    segment_number = int(pause_input)
+                    if 0 <= segment_number < len(loaded_chunks):
+                        i = segment_number - 1  # Set the index and break out of the pause loop
+                        break
+                    else:
+                        print(f"Invalid segment number. Enter a number between 0 and {len(loaded_chunks)-1}.")
+                elif pause_input == "exit":
+                    print("\nExiting program.")
+                    program_running = False
+                    t.join()
+                    return file_path, chunk_size, i
+                else:
+                    print("Invalid command. Type 'resume' to continue reading, enter a segment number, or 'exit' to quit.")
             
         elif user_input and user_input.isdigit():
             i = int(user_input) - 1  # Subtract 1 to counteract the increment at the end of the loop
