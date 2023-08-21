@@ -2,6 +2,10 @@
 
 A simple command-line txt file reader that lets users choose a system voice for reading and can summarize spoken text using an AI agent. Supports txt, epub, and pdf files.
 
+## ![babelSUM](https://github.com/EveryOneIsGross/babelSUM/assets/23621140/2cb09820-b558-41ff-a3bd-4e5957406979)
+
+---
+
 ## Features
 
 - Voice selection with pyttsx3 or ElevenLabs TTS API.
