@@ -25,7 +25,6 @@ Install the required packages:
 ebooklib
 pyttsx3
 json
-os
 threading
 queue
 pickle
